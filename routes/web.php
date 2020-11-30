@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('posts.index');
-});
+})->name('Posts');
+Route::get('/register', [RegisterController::class , 'index'])->name('Register');
+Route::post('/register', [RegisterController::class , 'store'])->name('Register');
+Route::get('/dashboard', function(){
+    return view('dashboard.index');
+})->name('Dashboard')->middleware('auth');

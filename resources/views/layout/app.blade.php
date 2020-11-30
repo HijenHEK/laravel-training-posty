@@ -13,34 +13,40 @@
     <nav class="bg-white flex justify-between py-3 px-10">
         <ul class="flex">
             <li class="p-3">
-                <a href="/">Posts</a>
+                <a href="{{ route('Posts')}}">Posts</a>
             </li>
             <li class="p-3">
-                <a href="/dash">dashboard</a>
+                <a href="#">Dashboard</a>
             </li>
         </ul>
 
         <ul  class="flex">
+            @guest
             <li class="p-3">
-                <a href="/">Login</a>
+                <a href="#">Login</a>
             </li>
             <li class="p-3">
-                <a href="/dash">Register</a>
+                <a href="{{ route('Register')}}">Register</a>
+            </li>
+            @else
+            <li class="p-3">
+                <a href="#">Profile</a>
             </li>
             <li class="p-3">
-                <a href="/dash">Profile</a>
+            {{-- <form action="{{route('logout')}}" method="post">
+                <input type="submit" value="Logout">
+            </form> --}}
             </li>
+            @endguest
         </ul>
     </nav>
     
 
 
-    <div class="w-8/12 mx-auto bg-white p-5 my-5 h-full">
 
 
 
         @yield('content')
-    </div>
 
 
 

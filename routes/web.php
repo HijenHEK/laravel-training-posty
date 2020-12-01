@@ -22,7 +22,6 @@ Route::get('/', function () {
 
 
 
-Route::group(['middleware' => ['guest']], function () {
         
     Route::get('/register', [RegisterController::class , 'index'])->name('register');
     Route::post('/register', [RegisterController::class , 'store'])->name('register');
@@ -30,7 +29,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', [LoginController::class , 'index'])->name('login');
     Route::post('/login', [LoginController::class , 'store'])->name('login');
 
-});
+    Route::post('/logout', [LogoutController::class , 'store'])->name('logout');
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -38,6 +37,5 @@ Route::group(['middleware' => ['auth']], function () {
         return view('dashboard');
     })->name('Dashboard');
 
-    Route::post('/logout', [LogoutController::class , 'store'])->name('logout');
 
 });

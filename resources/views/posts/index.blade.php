@@ -31,17 +31,30 @@
     @endauth
     
     <div class="mt-5">
-        @foreach ($posts as $post)
-            <div class="bg-white w-full border-2 rounded-lg py-2 px-4 my-2">
-                <div class="mb-2">
-                {{$post->user->name}} <span class="text-xs text-gray-400"> {{ $post->created_at->diffForHumans()}}</span>
-                </div>
-                <div>
-                    {{$post->body}}
+        @if($posts->count())
+            @foreach ($posts as $post)
+                <div class="bg-white w-full border-2 rounded-lg py-2 px-4 my-2">
+                    <a class="mb-2 font-bold">
+                    {{$post->user->name}} 
+                    </a>
+                    <span class="text-xs text-gray-500"> {{ $post->created_at->diffForHumans()}}</span>
+                    <p>
+                        {{$post->body}}
 
+                    </p>
                 </div>
+            @endforeach
+            <div class=" py-2 px-4 my-2">
+                {{$posts->links()}}
             </div>
-        @endforeach
+        @else
+        
+            <p class="text-xs text-gray-500">
+                there is no posts yet !
+            </p>
+        @endif
+
+        
     </div>
 </div>
 @endsection

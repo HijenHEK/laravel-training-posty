@@ -30,7 +30,9 @@ class RegisterController extends Controller
 
         $u->save();
         
-        Auth::login($u);
+        if(! Auth::attempt(['email' => $r->email, 'password' => $r->password])){
+            return back()->with('login-failed' , 'login failed for some reason , please try again later');
+        };
         return redirect()->route('Dashboard');
     }
 }

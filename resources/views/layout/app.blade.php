@@ -15,18 +15,20 @@
             <li class="p-3">
                 <a href="{{ route('Posts')}}">Posts</a>
             </li>
+            @auth
             <li class="p-3">
                 <a href="#">Dashboard</a>
             </li>
+            @endauth
         </ul>
 
         <ul  class="flex">
             @guest
             <li class="p-3">
-                <a href="#">Login</a>
+                <a href="{{ route('login')}}">login</a>
             </li>
             <li class="p-3">
-                <a href="{{ route('Register')}}">Register</a>
+                <a href="{{ route('register')}}">register</a>
             </li>
             @else
             <li class="p-3">

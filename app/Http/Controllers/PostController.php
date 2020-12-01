@@ -10,7 +10,7 @@ class PostController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except('index','show');
     }
     /**
      * Display a listing of the resource.
@@ -52,7 +52,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show' , [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -88,6 +90,6 @@ class PostController extends Controller
     {
         $this->authorize('delete', $post);
         $post->delete();
-        return response('null' , 412) ;
+        return redirect()->route('posts');
     }
 }

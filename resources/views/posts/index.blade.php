@@ -42,7 +42,7 @@
                         {{$post->body}}
 
                     </p>
-                    
+                        @auth
                         <form action="{{route('like',$post->id)}}" method="post" class="inline">
                             @csrf
 
@@ -54,7 +54,9 @@
                                 {{Auth::user()->like($post) ? 'Unlike' : 'Like'}} 
                             </button>
                         </form>
-                    <span class=" font-bold text-xs   @if (Auth::user()->like($post)) text-blue-700 @endif">
+                        @endauth
+                        
+                        <span class=" font-bold text-xs @auth  @if (Auth::user()->like($post)) text-blue-700 @endif @endauth">
                             {{$post->likes->count() .' '. Str::plural("like", $post->likes->count()) }}
                         </span>
                         

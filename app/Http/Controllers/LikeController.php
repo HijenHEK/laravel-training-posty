@@ -12,6 +12,11 @@ class LikeController extends Controller
     //
 
     public function store(Post $post){
+
+        if(Request()->user()->like($post)){
+            return response(null , 409);
+        }
+
         $post->likes()->create([
             "user_id" => Auth::id()
         ]);

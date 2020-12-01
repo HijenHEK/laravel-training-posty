@@ -30,7 +30,12 @@
             </div>
             @enderror
         </div>
-        
+        <div class="mb-2 flex items-center ">
+            <input type="checkbox" name="remember" class="mx-2">
+            <label for="Remember me" > Remember me </label>
+
+            
+        </div>
         <div class="mb-2 flex justify-center">
             <label for="submit button" class="sr-only"> submit button </label>
             <button type="submit" class="bg-blue-400 text-white  border-2 center rounded-lg py-2 px-6">Login</button>

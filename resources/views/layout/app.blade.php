@@ -32,12 +32,13 @@
             </li>
             @else
             <li class="p-3">
-                <a href="#">Profile</a>
+                <a href="#">{{Auth::user()->name}}</a>
             </li>
             <li class="p-3">
-            {{-- <form action="{{route('logout')}}" method="post">
-                <input type="submit" value="Logout">
-            </form> --}}
+            <form action="{{route('logout')}}" method="post" class="inline p-3">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
             </li>
             @endguest
         </ul>

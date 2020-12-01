@@ -13,7 +13,7 @@
     <nav class="bg-white flex justify-between py-3 px-10">
         <ul class="flex">
             <li class="p-3">
-                <a href="{{ route('Posts')}}">Posts</a>
+                <a href="{{ route('posts')}}">Posts</a>
             </li>
             @auth
             <li class="p-3">

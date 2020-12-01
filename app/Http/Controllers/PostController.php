@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,19 +19,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return view('posts.index' , [
+            'posts' => Post::latest()->paginate(10)
+            ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +33,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "body" => "required|min:3"
+        ]);
+        
+        $request->user()->posts()->create([
+            "body" => $request->body,
+        ]);
+
+        return back();
     }
 
     /**

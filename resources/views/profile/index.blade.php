@@ -2,7 +2,22 @@
 
 @section('content')
 <div class="w-8/12 mx-auto bg-white p-5 my-5 h-full">
+<h1 class="font-bold">
+    {{$user->name}}
+</h1> 
+<div > 
+    <span class="text-xs">
+        <span class="text-gray-500">Posted</span>  
+        {{ $posts->count() .' '.Str::plural('post' ,$posts->count())}}</span>
+    <span class="text-xs">
+        <span  class="text-gray-500">and recieved </span>
+        {{ $user->recievedLikes->count().' '. Str::plural('like' ,$user->recievedLikes->count())}}</span>
+</div>
+</div>
+<div class="w-8/12 mx-auto bg-white p-5 my-5 h-full">
     @auth
+
+    @if(Auth::user()->is($user))
     <form action="{{route('posts')}}" method="post">
         @csrf
 
@@ -26,16 +41,14 @@
         </div>
     </form>
 
+    @endif
     @endauth
-
     <div class="mt-5">
         @if($posts->count())
 
         @foreach ($posts as $post)
         <div class="bg-white w-full border-2 rounded-lg py-2 px-4 my-2">
-        <a href="{{route('profile' , $post->user->username)}}" class="mb-2 font-bold">
-                {{$post->user->name}}
-            </a>
+        
             <span class="text-xs text-gray-500"> {{ $post->created_at->diffForHumans()}}</span>
             <p>
                 {{$post->body}}

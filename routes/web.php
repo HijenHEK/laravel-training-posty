@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,8 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/login', [LoginController::class , 'index'])->name('login');
     Route::post('/login', [LoginController::class , 'store'])->name('login');
+
+    Route::get('/users/{user:username}', [ProfileController::class , 'show'])->name('profile');
 
     Route::post('/logout', [LogoutController::class , 'store'])->name('logout');
 

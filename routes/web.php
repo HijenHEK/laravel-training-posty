@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/', [PostController::class , 'index'])->name('posts');
     Route::post('/posts', [PostController::class , 'store'])->name('posts');
 
+    Route::post('/like/{post}', [LikeController::class , 'store'])->name('like');
+    Route::delete('/like/{post}', [LikeController::class , 'destroy'])->name('like');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', function(){

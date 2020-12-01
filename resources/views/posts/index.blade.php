@@ -42,6 +42,22 @@
                         {{$post->body}}
 
                     </p>
+                    
+                        <form action="{{route('like',$post->id)}}" method="post" class="inline">
+                            @csrf
+
+                            @if (Auth::user()->like($post))
+                                @method("DELETE")
+                            @endif
+
+                            <button type="submit" class="text-xs text-gray-700 border-2 px-1 rounded-lg"> 
+                                {{Auth::user()->like($post) ? 'Unlike' : 'Like'}} 
+                            </button>
+                        </form>
+                    <span class=" font-bold text-xs   @if (Auth::user()->like($post)) text-blue-700 @endif">
+                            {{$post->likes->count() .' '. Str::plural("like", $post->likes->count()) }}
+                        </span>
+                        
                 </div>
             @endforeach
             <div class=" py-2 px-4 my-2">

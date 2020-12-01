@@ -28,6 +28,6 @@ class LoginController extends Controller
         if(! Auth::attempt(['email' => $r->email, 'password' => $r->password] , $r->remember )){
             return back()->with('login-failed' , 'Invalid login details !! try again ');
         };
-        return redirect()->route('Dashboard');
+        return redirect()->route('posts');
     }
 }

@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="w-4/12 mx-auto bg-white p-5 my-5 h-full">
-    @if ( Session::has('login-failed')) 
-        {{Session::get('login-failed')}}
+    @if (  session('login-failed')) 
+        {{ session('login-failed')}}
     @else
     <form action="{{route('register')}}" method="post">
         @csrf

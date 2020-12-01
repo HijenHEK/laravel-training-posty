@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="w-4/12 mx-auto bg-white p-5 my-5 h-full">
-    @if ( Session::has('login-failed')) 
+    @if ( session('login-failed')) 
         <div class="text-white text-center p-2 mb-3 text-small bg-red-400 w-full  rounded-lg py-2 px-4">
-            {{Session::get('login-failed')}} 
+            {{ session('login-failed')}} 
         </div>
         
     @endif

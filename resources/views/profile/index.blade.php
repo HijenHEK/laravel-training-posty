@@ -1,46 +1,48 @@
 @extends('layout.app')
 
 @section('content')
-<div class="w-8/12 mx-auto bg-white p-5 my-5 h-full">
-<div class="w-full flex justify-between">
+<div class="lg:w-8/12 w-full$ mx-auto bg-white p-5 my-5 h-full">
+    <div class="w-full flex justify-between">
 
-    <h1 class="font-bold">
-        {{$user->name}}
-    </h1> 
-        
-    @can('follow' , $user)
+        <h1 class="font-bold">
+            {{$user->name}}
+        </h1>
+
+        @can('follow' , $user)
         <form action="{{route('follow' , $user)}}" method="POST">
             @csrf
-            <button type="submit" class="px-3 py-1 bg-blue-300 text-white hover:bg-blue-500 rounded-lg "> Follow </button>
+            <button type="submit" class="px-3 py-1 bg-blue-300 text-white hover:bg-blue-500 rounded-lg "> Follow
+            </button>
         </form>
-    @elsecan('unfollow' , $user)
+        @elsecan('unfollow' , $user)
 
         <form action="{{route('follow' , $user)}}" method="POST">
             @method('DELETE')
             @csrf
-            <button type="submit" class="px-3 py-1 bg-gray-300 text-white hover:bg-red-500 rounded-lg "> unFollow </button>
+            <button type="submit" class="px-3 py-1 bg-gray-300 text-white hover:bg-red-500 rounded-lg "> unFollow
+            </button>
         </form>
-    @endcan
-
-        
+        @endcan
 
 
+
+
+    </div>
+
+    <div>
+        <span class="text-sm text-blue-500">
+            {{ $user->followers->count() .' '.Str::plural('Follower' , $user->followers->count() )}}</span>
+
+        </span>
+        <span class="text-xs">
+            <span class="text-gray-500">Posted</span>
+            {{ $posts->count() .' '.Str::plural('post' ,$posts->count())}}</span>
+        <span class="text-xs">
+            <span class="text-gray-500">and recieved </span>
+            {{ $user->recievedLikes->count().' '. Str::plural('like' ,$user->recievedLikes->count())}}</span>
+    </div>
 </div>
-
-<div > 
-    <span class="text-sm text-blue-500">
-        {{ $user->followers->count() .' '.Str::plural('Follower' , $user->followers->count() )}}</span>
-
-    </span>
-    <span class="text-xs">
-        <span class="text-gray-500">Posted</span>  
-        {{ $posts->count() .' '.Str::plural('post' ,$posts->count())}}</span>
-    <span class="text-xs">
-        <span  class="text-gray-500">and recieved </span>
-        {{ $user->recievedLikes->count().' '. Str::plural('like' ,$user->recievedLikes->count())}}</span>
-</div>
-</div>
-<div class="w-8/12 mx-auto bg-white p-5 my-5 h-full">
+<div class="lg:w-8/12 w-full mx-auto bg-white p-5 my-5 h-full">
     @auth
 
     @if(Auth::user()->is($user))

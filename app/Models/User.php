@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -57,5 +58,21 @@ class User extends Authenticatable
     }
     public function recievedLikes(){
         return $this->hasManyThrough(Like::class , Post::class);
+    }
+    public function following(){
+        return $this->belongsToMany(User::class , 'follow' , 'user_id' , 'following_id');
+    }
+    public function followers(){
+        return $this->belongsToMany(User::class , 'follow' , 'following_id' ,  'user_id');
+    }
+    public function isFollowing(User $user=null , User $u ) {
+        $user = $user ? $user : $this;
+        return $user->following()->where('following_id' , $u->id)->exists;
+    }
+    public function follow(User $user) {
+        $this->following()->attach($user);
+    }
+    public function unfollow(User $user) {
+        $this->following()->detach($user);
     }
 }

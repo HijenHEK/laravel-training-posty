@@ -11,7 +11,10 @@
 <body class="bg-gray-100">
     
     
-    @include('layout.partials.nav')
+
+    <div id="app">
+
+        @include('layout.partials.nav')
     
 
 
@@ -19,6 +22,10 @@
 
 
         @yield('content')
+
+        
+    </div>
+
 
 
 

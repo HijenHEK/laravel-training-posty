@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -27,9 +28,13 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Gate::define('delete' , function (User $user ,Post $post){
+        Gate::define('delete-post' , function (User $user ,Post $post){
             
             return $post->user->is($user);
+        });
+        Gate::define('delete-comment' , function (User $user ,Comment $comment){
+            
+            return $comment->user->is($user) || $comment->post->user->is($user);
         });
         //
     }

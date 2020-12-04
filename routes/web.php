@@ -57,5 +57,6 @@ Route::group(['middleware' => ['auth']], function () {
         return view('dashboard');
     })->name('Dashboard');
 
-
+    
 });
+

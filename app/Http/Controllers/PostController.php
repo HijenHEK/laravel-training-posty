@@ -6,6 +6,9 @@ use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
+
 
 class PostController extends Controller
 {
@@ -93,8 +96,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $this->authorize('delete', $post);
+       
+        $this->authorize('delete-post', $post);
         $post->delete();
-        return redirect()->route('posts');
+        
+        if( Str::contains(url()->previous(), "posts/") ){
+            return redirect('posts');
+        }
+        return back();
     }
 }

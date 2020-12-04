@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class PostController extends Controller
     public function index()
     {
         return view('posts.index' , [
-            'posts' => Post::latest()->with(['user','likes'])->paginate(10)
+            'posts' => Post::latest()->with(['user','likes','comments'])->paginate(10)
             ]);
     }
 
@@ -53,7 +54,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('posts.show' , [
-            'post' => $post
+            'post' => $post,
+            'comments' => Comment::where('post_id',$post->id)->with('user')->get()
         ]);
     }
 

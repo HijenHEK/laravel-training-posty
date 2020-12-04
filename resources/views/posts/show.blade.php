@@ -67,7 +67,7 @@
     </form>
 
 
-    @foreach ($post->comments as $comment)
+    @foreach ($comments as $comment)
 
     <div class="bg-white lg:w-4/5 w-full   my-2  mx-5 rounded">
         <div class="flex justify-between">

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -32,6 +33,9 @@ use Illuminate\Support\Facades\Route;
     Route::post('/login', [LoginController::class , 'store'])->name('login');
 
     Route::get('/users/{user:username}', [ProfileController::class , 'show'])->name('profile');
+
+    Route::post('/follow/{user:username}', [FollowController::class , 'store'])->name('follow');
+    Route::delete('/follow/{user:username}', [FollowController::class , 'destroy'])->name('follow');
 
     Route::post('/logout', [LogoutController::class , 'store'])->name('logout');
 

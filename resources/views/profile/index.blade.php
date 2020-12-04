@@ -2,9 +2,20 @@
 
 @section('content')
 <div class="w-8/12 mx-auto bg-white p-5 my-5 h-full">
-<h1 class="font-bold">
-    {{$user->name}}
-</h1> 
+<div class="w-full flex justify-between">
+
+    <h1 class="font-bold">
+        {{$user->name}}
+    </h1> 
+    @can('follow' , $user)
+    <form action="{{route('follow' , $user)}}" method="POST">
+        @csrf
+        <button type="submit" class="px-3 py-1 bg-blue-300 text-white hover:bg-blue-500 rounded-lg "> Follow </button>
+    </form>
+    @endcan
+
+</div>
+
 <div > 
     <span class="text-xs">
         <span class="text-gray-500">Posted</span>  

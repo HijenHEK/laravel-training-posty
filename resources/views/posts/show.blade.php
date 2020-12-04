@@ -1,9 +1,9 @@
 @extends('layout.app')
 
 @section('content')
-<div class="w-8/12 mx-auto p-5 my-5 h-full">
+<div class="lg:w-8/12 w-full mx-auto p-5 my-5 h-full">
 
-<div class="bg-white w-full  py-2 px-4 my-2">
+<div class="bg-white w-full  py-2 px-4 my-2 rounded">
     <a href="{{route('profile' , $post->user->username)}}" class="mb-2 text-lg font-bold">
         {{$post->user->name}}
     </a>
@@ -47,9 +47,21 @@
 
 </div>
 
+    <form class="bg-white lg:w-4/5 w-full rounded mb-4 mt-7" action="#" method="POST">
+        <div class="flex items-center">
+            <textarea name="content" id="content" rows="2" class=" text-sm bg-blue-100 mx-5 rounded p-2 border w-full resize-none"></textarea>
+        
+            <button type="submit" class="bg-blue-400 py-2 px-3 text-white rounded-lg"> comment</button>
+        </div>
+        @error('content') 
+            <span class="text-red-400 text-sm">{{$message}}</span>
+        @enderror
+    </form>
+
+
     @foreach ($post->comments as $comment)
         
-        <div class="bg-white w-full  my-2 p-3 mx-5">
+        <div class="bg-white lg:w-4/5 w-full   my-2  mx-5 rounded">
 
             <a href="{{route('profile' , $comment->user->username)}}" class="mb-2 text-sm font-bold">
                 {{$comment->user->name}}

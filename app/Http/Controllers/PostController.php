@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth')->except('index','show');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -20,9 +21,11 @@ class PostController extends Controller
      */
     public function index()
     {
+        $posts = auth()->user()->feed() ;
+        
         return view('posts.index' , [
-            'posts' => Post::latest()->with(['user','likes','comments'])->paginate(10)
-            ]);
+            'posts' => $posts
+        ]);
     }
 
     
@@ -55,7 +58,7 @@ class PostController extends Controller
     {
         return view('posts.show' , [
             'post' => $post,
-            'comments' => Comment::where('post_id',$post->id)->with('user')->get()
+            'comments' => Comment::where('post_id',$post->id)->latest()->with('user')->get()
         ]);
     }
 

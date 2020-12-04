@@ -59,6 +59,14 @@ class User extends Authenticatable
     public function recievedLikes(){
         return $this->hasManyThrough(Like::class , Post::class);
     }
+    public function feed(){
+        $following = $this->following()->pluck('following_id') ;
+        return Post::whereIn('user_id', $following)
+                    ->orWhere('user_id', $this->id)
+                    ->with(['user','likes','comments'])
+                    ->latest()
+                    ->paginate(10);
+    }
     public function following(){
         return $this->belongsToMany(User::class , 'follow' , 'user_id' , 'following_id');
     }

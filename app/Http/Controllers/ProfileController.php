@@ -12,7 +12,7 @@ class ProfileController extends Controller
     public function show(User $user){
         $posts = $user->posts()->with(['user' , 'likes'])->paginate(10);
         return view('profile.index' , [
-            'user' => $user ,
+            'user' => $user,
             'posts' => $posts
         ]);
     }

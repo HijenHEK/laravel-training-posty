@@ -37,9 +37,18 @@ class AuthServiceProvider extends ServiceProvider
             return $comment->user->is($user) || $comment->post->user->is($user);
         });
 
+        // Gate::define(['follow , unfollow'] , function(User $user , User $u){
+        //     return Auth::check($user) && !$user->is($u) ;
+        // });
+
+        
+
         Gate::define('follow' , function(User $user , User $u ) {
-            return !( $user->isFollowing($u) || $user->is($u) ); 
+            return Auth::check($user) && !( $user->isFollowing($u) || $user->is($u) ); 
         });
         //
+        Gate::define('unfollow' , function(User $user , User $u ) {
+            return Auth::check($user) && $user->isFollowing($u) && !$user->is($u) ; 
+        });
     }
 }

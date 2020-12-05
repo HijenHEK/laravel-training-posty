@@ -13,7 +13,7 @@ class LikeController extends Controller
 {
     //
     public function index(Post $post) {
-        return $post->likes()->get() ;
+        return [$post->likes()->get(),Auth::user() ? Auth::user()->like($post) : null] ;
     }
     public function store(Post $post){
         

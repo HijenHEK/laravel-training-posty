@@ -2025,7 +2025,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['post', 'liked'],
+  props: ['post'],
   computed: {
     value: function value() {
       return this.liked ? 'unlike' : 'like';
@@ -2033,7 +2033,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      likes: 0
+      likes: 0,
+      liked: null
     };
   },
   methods: {
@@ -2041,7 +2042,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/like/' + this.post).then(function (response) {
-        _this.likes = response.data.length;
+        _this.likes = response.data[0].length; // if(response.data[1] === null) {
+        // }
+
+        _this.liked = response.data[1];
       });
     },
     react: function react() {
@@ -2055,14 +2059,16 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.post('/like/' + this.post).then(function () {
-        return _this2.likes += 1;
+        _this2.likes += 1;
+        _this2.liked = true;
       });
     },
     unlike: function unlike() {
       var _this3 = this;
 
       axios["delete"]('/like/' + this.post).then(function () {
-        return _this3.likes -= 1;
+        _this3.likes -= 1;
+        _this3.liked = false;
       });
     }
   },

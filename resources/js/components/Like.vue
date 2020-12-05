@@ -21,7 +21,7 @@
 
 <script>
 export default {
-    props : ['post' , 'liked'],
+    props : ['post'],
     computed : {
         value() {
             return this.liked ? 'unlike' : 'like'
@@ -29,15 +29,19 @@ export default {
     },
     data() {
         return {
-            likes : 0
+            likes : 0,
+            liked : null
         }
     },
     methods : {
         getLikes(){
             axios.get('/like/'+this.post)
                 .then((response) => {
-                    this.likes = response.data.length
-                   
+                    this.likes = response.data[0].length
+                    // if(response.data[1] === null) {
+
+                    // }
+                    this.liked = response.data[1]
                 })
         },
         react() {
@@ -49,12 +53,18 @@ export default {
         },
         like(){
             axios.post('/like/'+this.post)
-                .then(()=>this.likes+=1)
+                .then(()=>{
+                    this.likes+=1
+                    this.liked = true
+                })
         },
         unlike(){
 
             axios.delete('/like/'+this.post)
-                .then(() => this.likes-=1)
+                .then(()=>{
+                    this.likes-=1
+                    this.liked = false
+                })
         }
     },
     mounted() {

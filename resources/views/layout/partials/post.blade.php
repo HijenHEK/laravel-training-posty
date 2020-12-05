@@ -1,6 +1,8 @@
+{{-- <single-post :id="{{$post->id}}" :auth="{{Auth::user()->id}}" inline-template> --}}
 <div class="bg-white w-full border-2 rounded-lg py-2 px-4 my-2">
+    
     <div class="flex justify-between ">
-        <div class="user">
+        <div class="user"> 
             <a href="{{route('profile' , $post->user->username)}}" class="mb-2 font-bold">
                 {{$post->user->name}}
             </a>
@@ -28,7 +30,7 @@
         <div>
         <like :post="{{$post->id}}" 
             :LikesCount="{{$post->likes->count()}}" 
-            :liked="{{ Auth::user()->like($post) ? 1 : 0}}"  />
+             />
             {{-- @auth
 
             <form action="{{route('like',$post->id)}}" method="post" class="inline">
@@ -60,3 +62,5 @@
     </div>
 
 </div>
+
+{{-- </single-post> --}}

@@ -23,12 +23,15 @@
     </form>
 
 
-    @foreach ($comments as $comment)
+
+<comment-list  :post="{{$post->id}}" :auth="{{auth()->user()->id}}"/>
+
+    {{-- @foreach ($comments as $comment)
 
     @include('layout.partials.comment')
 
 
-    @endforeach
+    @endforeach --}}
 
 
 </div>

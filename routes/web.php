@@ -60,3 +60,5 @@ Route::group(['middleware' => ['auth']], function () {
     
 });
 
+
+Route::get('/posts/{post}/comments', [CommentController::class , 'index'])->name('post.comments');

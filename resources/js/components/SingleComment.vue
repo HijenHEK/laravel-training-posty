@@ -7,19 +7,13 @@
                                 </a>
                                 <span class="text-xs text-gray-500"> {{ comment.created_at}}</span>
                             </div>
-                            <!-- @can('delete-comment' , $comment)
-                                <form action="{{route('comments.delete' , $comment->id)}}" method="post" class="inline">
-                                    @method("DELETE")
-                                    @csrf
-
-                                    <button type="submit" class="text-xs text-white bg-red-600 border-2 px-1 rounded-lg">
+                            
+                                    <button v-if="canDelete" @click="deleteComment()" class="text-xs text-white bg-red-600 border-2 px-1 rounded-lg">
                                         delete
                                     </button>
 
-                                </form>
-                            @endcan -->
+                                
                         </div>
-
                         <p class="text-sm">
                             {{comment.content}}
 
@@ -30,7 +24,12 @@
 
 <script>
 export default {
-    props: ['comment']
+    props: ['post','comment','canDelete'],
+    methods : {
+        deleteComment() {
+            this.$emit('delete-comment')
+        }
+    }
 }
 </script>
 

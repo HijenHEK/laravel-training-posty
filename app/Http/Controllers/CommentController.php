@@ -10,7 +10,9 @@ class CommentController extends Controller
 {
     
 
-   
+   public function index(Post $post) {
+       return $post->comments()->with('user')->get();
+   }
     /**
      * Store a newly created resource in storage.
      *
@@ -56,7 +58,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        $this->authorize('delete-comment' , $comment);
+        // $this->authorize('delete-comment' , $comment);
         
         $comment->delete();
 

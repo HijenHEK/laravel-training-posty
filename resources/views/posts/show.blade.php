@@ -3,7 +3,7 @@
 @section('content')
 <div class="lg:w-8/12 w-full mx-auto p-5 my-5 h-full">
 
-    {{-- @include('layout.partials.post')
+    @include('layout.partials.post')
 
 
 
@@ -28,9 +28,8 @@
     @include('layout.partials.comment')
 
 
-    @endforeach --}}
+    @endforeach
 
-    <show-post />
 
 </div>
 

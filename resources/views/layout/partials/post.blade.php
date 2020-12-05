@@ -26,7 +26,11 @@
     </a>
     <div class="flex px-2">
         <div>
-            @auth
+        <like :post="{{$post->id}}" 
+            :LikesCount="{{$post->likes->count()}}" 
+            :liked="{{ Auth::user()->like($post) ? 1 : 0}}"  />
+            {{-- @auth
+
             <form action="{{route('like',$post->id)}}" method="post" class="inline">
                 @csrf
 
@@ -43,7 +47,7 @@
             <span
                 class=" font-bold text-xs @auth  @if (Auth::user()->like($post)) text-blue-700 @endif @endauth">
                 {{$post->likes->count() .' '. Str::plural("like", $post->likes->count()) }}
-            </span>
+            </span> --}}
             <a href="{{route('posts.show' , $post->id)}}">
 
                 <span class=" mx-3 px-3 font-bold text-xs">

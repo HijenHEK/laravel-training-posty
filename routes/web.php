@@ -44,6 +44,9 @@ use Illuminate\Support\Facades\Route;
     Route::post('/posts', [PostController::class , 'store'])->name('posts');
     Route::get('/posts/{post}', [PostController::class , 'show'])->name('posts.show');
     Route::delete('/posts/{post}', [PostController::class , 'destroy'])->name('posts.delete');
+    
+    
+    Route::get('/like/{post}', [LikeController::class , 'index']);
 
     Route::post('/like/{post}', [LikeController::class , 'store'])->name('like');
     Route::delete('/like/{post}', [LikeController::class , 'destroy'])->name('like');

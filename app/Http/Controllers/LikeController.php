@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Mail;
 class LikeController extends Controller
 {
     //
-
+    public function index(Post $post) {
+        return $post->likes()->get() ;
+    }
     public function store(Post $post){
         
 
@@ -24,17 +26,20 @@ class LikeController extends Controller
             "user_id" => Auth::id()
         ]);
 
-        if(! $post->likes()->onlyTrashed()->where('user_id' , auth()->id())->count()) {
-            Mail::to($post->user)->send(new PostLiked(Auth::user() , $post));
+        // if(! $post->likes()->onlyTrashed()->where('user_id' , auth()->id())->count()) {
+        //     Mail::to($post->user)->send(new PostLiked(Auth::user() , $post));
 
-        } ;
+        // } ;
 
-        return back();
+        // return back();
 
     }
 
     public function destroy(Post $post){
+        if(!Request()->user()->like($post)){
+            return response(null , 409);
+        }
         $post->likes->where("user_id" , Auth::id())->first()->delete();
-        return back();
+        // return back();
     }
 }

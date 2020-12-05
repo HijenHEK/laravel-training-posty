@@ -11,7 +11,7 @@ class CommentController extends Controller
     
 
    public function index(Post $post) {
-       return $post->comments()->with('user')->get();
+       return $post->comments()->with('user')->latest()->get();
    }
     /**
      * Store a newly created resource in storage.
@@ -31,8 +31,9 @@ class CommentController extends Controller
         $comment->user_id = $request->user()->id ;
         $comment->post_id = $post->id;
         $comment->save() ;
-
-        return back();
+        
+        
+        // return back();
 
     }
 
@@ -62,6 +63,6 @@ class CommentController extends Controller
         
         $comment->delete();
 
-        return back();
+        // return back();
     }
 }

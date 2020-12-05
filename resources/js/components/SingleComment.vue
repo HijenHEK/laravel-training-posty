@@ -18,17 +18,18 @@
                             {{comment.content}}
 
                         </p>
-
-                    </div>
+    </div>
 </template>
 
 <script>
 export default {
-    props: ['post','comment','canDelete'],
+    props: ['comment','canDelete'],
     methods : {
         deleteComment() {
             this.$emit('delete-comment')
         }
+    },
+    mounted() {
     }
 }
 </script>

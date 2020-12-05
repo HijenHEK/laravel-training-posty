@@ -48,7 +48,6 @@ import SinglePost from './partials/SinglePost.vue'
         methods : {
             getPost() {
                 axios.get('/posts/1').then(response => {
-                    console.log(response)
                 });
             }
         },

@@ -56,7 +56,7 @@ class PostController extends Controller
             "body" => $request->body,
         ]);
 
-        return back();
+        // return back();
     }
 
     /**

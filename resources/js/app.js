@@ -21,7 +21,7 @@ Vue.use(require('axios'));
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('comment-section', require('./components/CommentSection.vue').default);
-Vue.component('posts-list', require('./components/PostsList.vue').default);
+Vue.component('posts-section', require('./components/PostsSection.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

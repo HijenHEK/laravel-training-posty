@@ -25,7 +25,7 @@ Vue.use(require('vue-moment'));
 Vue.component('comment-section', require('./components/CommentSection.vue').default);
 Vue.component('posts-section', require('./components/PostsSection.vue').default);
 Vue.component('user-profile', require('./components/UserProfile.vue').default);
-
+// Vue.component('pagination', require('laravel-vue-pagination'));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

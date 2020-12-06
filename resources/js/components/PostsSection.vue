@@ -26,17 +26,20 @@ export default {
     },
     
     methods : {
-        getPosts() {
+        getPosts(page) {
+            console.log(page)
             if(this.user != 0) {
-            axios.get('/users/'+this.user+'/posts')
+            axios.get('/users/'+this.user+'/posts?page='+ page)
                 .then((response) => {
-                    this.posts = response.data.data
+                    this.posts = response.data
                     // console.log(response.data.data)
                 })
             }else {
-                axios.get('/feed')
+                axios.get('/feed?page='+page)
                 .then((response) => {
-                    this.posts = response.data.data
+
+                    this.posts = response.data
+                    
                     // console.log(response.data.data)
                 })
             }

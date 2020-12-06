@@ -99,9 +99,11 @@
                         
                         @else
                         --}}
-            <posts-list @userupdate="userupdate()" :posts="posts" />
+            <posts-list @userupdate="userupdate()" @pagination="getPosts" :posts="posts" />
                 
+            
                 
+            </div>
                     
                 
                 </div>

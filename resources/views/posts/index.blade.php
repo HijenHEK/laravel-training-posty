@@ -44,15 +44,14 @@
                     @include('layout.partials.post')
                     @endforeach
                     <div class=" py-2 px-4 my-2">
-                        {{$posts->links()}}
                         
                     </div>
                     
                     @else
                     --}}
-        <posts-list :posts="posts" />
+        <posts-list @pagination="getPosts" :posts="posts" />
             
-            
+
                 
             
             </div>

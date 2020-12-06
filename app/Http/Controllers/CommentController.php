@@ -10,6 +10,11 @@ class CommentController extends Controller
 {
     
 
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+
    public function index(Post $post) {
        return $post->comments()->with('user')->latest()->get();
    }

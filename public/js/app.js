@@ -2284,6 +2284,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Like: _Like__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  computed: {
+    postLink: function postLink() {
+      return '/posts/' + this.post.id;
+    }
+  },
   methods: {
     userupdate: function userupdate() {
       this.$emit('userupdate');
@@ -34746,7 +34751,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [
+      _c("a", { attrs: { href: _vm.postLink } }, [
         _c("div", [
           _vm._v("\n            " + _vm._s(_vm.post.body) + "\n        ")
         ])
@@ -34762,7 +34767,7 @@ var render = function() {
               on: { react: _vm.userupdate }
             }),
             _vm._v(" "),
-            _c("a", { attrs: { href: "#" } }, [
+            _c("a", { attrs: { href: _vm.postLink } }, [
               _c("span", { staticClass: " mx-3 px-3 font-bold text-xs" }, [
                 _vm._v(
                   "\n                    " +

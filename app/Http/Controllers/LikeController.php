@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Mail;
 class LikeController extends Controller
 {
     //
+
+
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+
+
     public function index(Post $post) {
         return [$post->likes()->get(),Auth::user() ? Auth::user()->like($post) : null] ;
     }

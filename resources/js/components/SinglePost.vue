@@ -11,7 +11,7 @@
        
     </div>
 
-    <a href="#">
+    <a :href="postLink">
 
         <div>
             {{post.body}}
@@ -22,7 +22,7 @@
         <div class="flex">
         <like @react="userupdate" :post="post.id" />
             
-            <a href="#">
+            <a  :href="postLink">
 
                 <span class=" mx-3 px-3 font-bold text-xs">
                     {{post.comments.length}} Comments
@@ -43,6 +43,11 @@ export default {
     props : ['post'] ,
     components : {
         Like
+    },
+    computed : {
+        postLink() {
+            return '/posts/'+ this.post.id ;
+        }
     },
     methods : {
         userupdate() {

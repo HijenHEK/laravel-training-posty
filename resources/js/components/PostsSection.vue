@@ -3,6 +3,12 @@
 import PostsList from './PostsList'
 import Form from 'vform'
 export default {
+    props : {
+        isUser: {
+            type : Boolean ,
+            default : true
+        }
+    } ,
     components : {
         PostsList
     },
@@ -14,6 +20,7 @@ export default {
             }),
         }
     },
+    
     methods : {
         getPosts() {
             axios.get('/feed')
@@ -23,10 +30,16 @@ export default {
                 })
         },
         addPost() {
-            axios.post('/posts',this.form)
-                .then(()=>{
-                    this.getPosts()
-                })
+            if(!this.isUser) {
+                return response('cant',419)
+            }else {
+                axios.post('/posts',this.form)
+                    .then(()=>{
+                        this.getPosts()
+                        this.form.reset()
+                    })
+            }
+            
         }
     },
     mounted () {

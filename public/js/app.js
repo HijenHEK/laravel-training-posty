@@ -2127,6 +2127,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    isUser: {
+      type: Boolean,
+      "default": true
+    }
+  },
   components: {
     PostsList: _PostsList__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -2149,9 +2155,15 @@ __webpack_require__.r(__webpack_exports__);
     addPost: function addPost() {
       var _this2 = this;
 
-      axios.post('/posts', this.form).then(function () {
-        _this2.getPosts();
-      });
+      if (!this.isUser) {
+        return response('cant', 419);
+      } else {
+        axios.post('/posts', this.form).then(function () {
+          _this2.getPosts();
+
+          _this2.form.reset();
+        });
+      }
     }
   },
   mounted: function mounted() {

@@ -52,8 +52,8 @@
             @{{user.likes}}
     </div>
 </div>
-
-    <posts-section @userupdate="getUser()" v-bind:isUser="{{ Auth::user()->is($user) || 0 }}" inline-template>
+    
+    <posts-section @userupdate="getUser()" :isuser="{{Auth::user()->is($user) ?  'true' : 'false' }}" inline-template>
 
         
         <div class="lg:w-8/12 w-full mx-auto bg-white p-5 my-5 h-full">
@@ -61,7 +61,7 @@
             
 
                 
-            <form v-if="isUser" @submit.prevent="isUser ? addPost() : '' " v-on:keydown="form.onKeydown($event)">
+            <form v-if="isuser" @submit.prevent="isuser ? addPost() : '' " v-on:keydown="form.onKeydown($event)">
                             
                 <div class="mb-2">
                     <label for="Post body" class="sr-only"> Post body </label>
@@ -84,7 +84,6 @@
                     :class="{'opacity-50' :  form.errors.has('body') }">Post it</button>
                 </div>
             </form>
-            
             
             
             @endauth

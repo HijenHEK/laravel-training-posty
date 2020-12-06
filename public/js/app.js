@@ -2128,14 +2128,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PostsList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostsList */ "./resources/js/components/PostsList.vue");
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_1__);
 //
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    isUser: {
+    isuser: {
       type: Boolean,
       "default": true
     }
@@ -2146,7 +2146,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       posts: {},
-      form: new vform__WEBPACK_IMPORTED_MODULE_2___default.a({
+      form: new vform__WEBPACK_IMPORTED_MODULE_1___default.a({
         body: ''
       })
     };
@@ -2165,7 +2165,9 @@ __webpack_require__.r(__webpack_exports__);
     addPost: function addPost() {
       var _this2 = this;
 
-      if (!this.isUser) {
+      console.log(!this.isuser);
+
+      if (!this.isuser) {
         return response('cant', 419);
       } else {
         axios.post('/posts', this.form).then(function () {
@@ -2180,6 +2182,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getPosts();
+    console.log(this.isuser);
   }
 });
 

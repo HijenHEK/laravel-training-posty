@@ -4,11 +4,11 @@ import PostsList from './PostsList'
 import Form from 'vform'
 export default {
     props : {
-        isUser: {
-            type : Boolean ,
-            default : true
+        isuser :{
+            type : Boolean,
+            default : true ,
         }
-    } ,
+    },
     components : {
         PostsList
     },
@@ -33,7 +33,8 @@ export default {
             this.$emit('userupdate')
         },
         addPost() {
-            if(!this.isUser) {
+            console.log(!this.isuser);
+            if(!this.isuser) {
                 return response('cant',419)
             }else {
                 axios.post('/posts',this.form)
@@ -48,6 +49,7 @@ export default {
     },
     mounted () {
         this.getPosts() 
+        console.log(this.isuser)
     }
 }
 </script>

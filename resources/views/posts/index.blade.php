@@ -3,8 +3,7 @@
 @section('content')
 
 
-<posts-section 
-inline-template>
+<posts-section inline-template>
 
     
     <div class="lg:w-8/12 w-full mx-auto bg-white p-5 my-5 h-full">

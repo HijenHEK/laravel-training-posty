@@ -2182,6 +2182,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['data'],
   data: function data() {
@@ -2189,7 +2192,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     changePage: function changePage(page) {
-      this.$emit('pagination', page);
+      if (!isNaN(page)) {
+        this.$emit('pagination', page);
+      }
     }
   },
   computed: {},
@@ -34942,15 +34947,38 @@ var render = function() {
                                         )
                                       ]
                                     )
-                                  : _c(
-                                      "a",
+                                  : isNaN(link.label)
+                                  ? _c(
+                                      "div",
                                       {
                                         staticClass:
                                           "relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-black focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150",
                                         attrs: {
-                                          href: link.url,
                                           "aria-label":
                                             "Go to page :" + link.label
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(link.label) +
+                                            "\n                                    "
+                                        )
+                                      ]
+                                    )
+                                  : _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "cursor-pointer relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-black focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150",
+                                        attrs: {
+                                          "aria-label":
+                                            "Go to page :" + link.label
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.changePage(link.label)
+                                          }
                                         }
                                       },
                                       [

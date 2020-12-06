@@ -59,9 +59,12 @@
                                         <span v-if="link.label == data.current_page" aria-current="page">
                                             <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-black  bg-white border border-gray-300 cursor-default leading-5">{{ link.label }}</span>
                                         </span>
-                                        <a v-else :href="link.url" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-black focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" :aria-label="'Go to page :' + link.label ">
+                                        <div v-else-if="isNaN(link.label)" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-black focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" :aria-label="'Go to page :' + link.label ">
                                             {{ link.label }}
-                                        </a>
+                                        </div>
+                                        <div v-else @click="changePage(link.label)" class="cursor-pointer relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-black focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" :aria-label="'Go to page :' + link.label ">
+                                            {{ link.label }}
+                                        </div>
                                     </div>
                                     
 
@@ -101,7 +104,10 @@ export default {
     },
     methods : {
         changePage(page) {
-            this.$emit('pagination' , page)
+            if(!isNaN(page)){
+                this.$emit('pagination' , page)
+
+            }
         }
         
     },

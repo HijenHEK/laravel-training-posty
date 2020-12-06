@@ -5,7 +5,7 @@
                                 <a href="#" class="mb-2 text-sm font-bold">
                                     {{comment.user.name}}
                                 </a>
-                                <span class="text-xs text-gray-500"> {{ comment.created_at}}</span>
+                                <span class="text-xs text-gray-500"> {{ comment.created_at | moment("from", "now")}}</span>
                             </div>
                             
                                     <button v-if="canDelete" @click="deleteComment()" class="text-xs text-white bg-red-600 border-2 px-1 rounded-lg">

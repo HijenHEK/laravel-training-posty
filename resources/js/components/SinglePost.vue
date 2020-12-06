@@ -6,7 +6,7 @@
             <a href="#" class="mb-2 font-bold">
                 {{post.user.name}}
             </a>
-            <span class="text-xs text-gray-500"> {{ post.created_at}}</span>
+            <span class="text-xs text-gray-500"> {{ post.created_at | moment("from", "now")}}</span>
         </div>
        
     </div>

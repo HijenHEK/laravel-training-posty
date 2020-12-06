@@ -2185,6 +2185,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['data'],
   data: function data() {
@@ -2192,9 +2200,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     changePage: function changePage(page) {
-      if (!isNaN(page)) {
-        this.$emit('pagination', page);
-      }
+      this.$emit('pagination', page);
     }
   },
   computed: {},
@@ -34770,27 +34776,89 @@ var render = function() {
                 staticClass:
                   "relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md"
               },
-              [_vm._v("\n                pagination.previous\n            ")]
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-5 h-5",
+                    attrs: { fill: "currentColor", viewBox: "0 0 20 20" }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ]
             )
           : _c(
-              "a",
+              "div",
               {
                 staticClass:
                   "relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150",
-                attrs: { href: _vm.data.prev_page_url }
+                on: {
+                  click: function($event) {
+                    return _vm.changePage(_vm.data.current_page - 1)
+                  }
+                }
               },
-              [_vm._v("\n                pagination.previous\n            ")]
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-5 h-5",
+                    attrs: { fill: "currentColor", viewBox: "0 0 20 20" }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ]
             ),
         _vm._v(" "),
         _vm.data.last_page > _vm.data.current_page
           ? _c(
-              "a",
+              "div",
               {
                 staticClass:
                   "relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150",
-                attrs: { href: _vm.data.next_page_url }
+                on: {
+                  click: function($event) {
+                    return _vm.changePage(_vm.data.current_page + 1)
+                  }
+                }
               },
-              [_vm._v("\n                pagination.next\n            ")]
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-5 h-5",
+                    attrs: { fill: "currentColor", viewBox: "0 0 20 20" }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ]
             )
           : _c(
               "span",
@@ -34798,7 +34866,25 @@ var render = function() {
                 staticClass:
                   "relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md"
               },
-              [_vm._v("\n                pagination.next\n            ")]
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-5 h-5",
+                    attrs: { fill: "currentColor", viewBox: "0 0 20 20" }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ]
             )
       ]),
       _vm._v(" "),

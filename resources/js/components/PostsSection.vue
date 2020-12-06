@@ -7,7 +7,11 @@ export default {
         isuser :{
             type : Boolean,
             default : true ,
-        }
+        },
+        user :{
+            type : Number,
+            default : 0 ,
+        },
     },
     components : {
         PostsList
@@ -23,11 +27,20 @@ export default {
     
     methods : {
         getPosts() {
-            axios.get('/feed')
+            if(this.user != 0) {
+            axios.get('/users/'+this.user+'/posts')
                 .then((response) => {
                     this.posts = response.data.data
                     // console.log(response.data.data)
                 })
+            }else {
+                axios.get('/feed')
+                .then((response) => {
+                    this.posts = response.data.data
+                    // console.log(response.data.data)
+                })
+            }
+            
         },
         userupdate() {
             this.$emit('userupdate')
@@ -48,7 +61,7 @@ export default {
         }
     },
     mounted () {
-        this.getPosts() 
+        this.getPosts()
         console.log(this.isuser)
     }
 }

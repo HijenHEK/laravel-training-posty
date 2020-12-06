@@ -2138,6 +2138,10 @@ __webpack_require__.r(__webpack_exports__);
     isuser: {
       type: Boolean,
       "default": true
+    },
+    user: {
+      type: Number,
+      "default": 0
     }
   },
   components: {
@@ -2155,9 +2159,15 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
-      axios.get('/feed').then(function (response) {
-        _this.posts = response.data.data; // console.log(response.data.data)
-      });
+      if (this.user != 0) {
+        axios.get('/users/' + this.user + '/posts').then(function (response) {
+          _this.posts = response.data.data; // console.log(response.data.data)
+        });
+      } else {
+        axios.get('/feed').then(function (response) {
+          _this.posts = response.data.data; // console.log(response.data.data)
+        });
+      }
     },
     userupdate: function userupdate() {
       this.$emit('userupdate');

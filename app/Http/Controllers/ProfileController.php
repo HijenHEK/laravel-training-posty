@@ -28,4 +28,8 @@ class ProfileController extends Controller
 
         
     }
+    public function posts(User $user){
+        return $user->posts()->with(['user' , 'likes' , 'comments'])->latest()->paginate(10);
+
+    }
 }

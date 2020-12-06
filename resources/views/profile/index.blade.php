@@ -53,7 +53,7 @@
     </div>
 </div>
     
-    <posts-section @userupdate="getUser()" :isuser="{{Auth::user()->is($user) ?  'true' : 'false' }}" inline-template>
+<posts-section @userupdate="getUser()" :user="{{$user->id}}" :isuser="{{Auth::user()->is($user) ?  'true' : 'false' }}" inline-template>
 
         
         <div class="lg:w-8/12 w-full mx-auto bg-white p-5 my-5 h-full">

@@ -67,3 +67,4 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::get('/posts/{post}/comments', [CommentController::class , 'index'])->name('post.comments');
 Route::get('/feed', [PostController::class , 'feed'])->name('post.feed');
+Route::get('/users/{user}/posts', [ProfileController::class , 'posts']);

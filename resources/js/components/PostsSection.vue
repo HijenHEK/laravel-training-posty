@@ -29,6 +29,9 @@ export default {
                     // console.log(response.data.data)
                 })
         },
+        userupdate() {
+            this.$emit('userupdate')
+        },
         addPost() {
             if(!this.isUser) {
                 return response('cant',419)
@@ -37,6 +40,7 @@ export default {
                     .then(()=>{
                         this.getPosts()
                         this.form.reset()
+                        this.userupdate()
                     })
             }
             

@@ -50,6 +50,7 @@ export default {
             }else {
                 this.like()
             }
+            this.$emit('react')
         },
         like(){
             axios.post('/like/'+this.post)

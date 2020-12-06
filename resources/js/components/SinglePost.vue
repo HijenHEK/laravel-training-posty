@@ -20,7 +20,7 @@
     </a>
     <div class="flex px-2">
         <div class="flex">
-        <like :post="post.id" />
+        <like @react="userupdate" :post="post.id" />
             
             <a href="#">
 
@@ -43,6 +43,11 @@ export default {
     props : ['post'] ,
     components : {
         Like
+    },
+    methods : {
+        userupdate() {
+            this.$emit('userupdate')
+        }
     }
 
 }

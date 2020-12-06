@@ -22,6 +22,7 @@ Vue.use(require('axios'));
 
 Vue.component('comment-section', require('./components/CommentSection.vue').default);
 Vue.component('posts-section', require('./components/PostsSection.vue').default);
+Vue.component('user-profile', require('./components/UserProfile.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

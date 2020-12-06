@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('/login', [LoginController::class , 'store'])->name('login');
 
     Route::get('/users/{user:username}', [ProfileController::class , 'show'])->name('profile');
+    Route::get('/users/{user}/data', [ProfileController::class , 'data']);
 
     Route::post('/follow/{user:username}', [FollowController::class , 'store'])->name('follow');
     Route::delete('/follow/{user:username}', [FollowController::class , 'destroy'])->name('follow');

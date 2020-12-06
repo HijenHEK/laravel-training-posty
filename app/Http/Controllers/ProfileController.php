@@ -16,4 +16,16 @@ class ProfileController extends Controller
             'posts' => $posts
         ]);
     }
+    public function data(User $user){
+        return [
+            "id" => $user->id , 
+            "name" => $user->name , 
+            "username" => $user->username , 
+            "followers" => $user->followers->count() , 
+            "posts" => $user->posts->count() , 
+            "likes" => $user->recievedLikes->count() , 
+        ];
+
+        
+    }
 }

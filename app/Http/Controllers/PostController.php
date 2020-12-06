@@ -22,6 +22,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function feed()
+    {
+        return auth()->user()->feed() ;
+        
+        
+    }
+
     public function index()
     {
         $posts = auth()->user()->feed() ;

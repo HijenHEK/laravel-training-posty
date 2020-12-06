@@ -1,8 +1,13 @@
 @extends('layout.app')
 
 @section('content')
+
+
+
 <div class="lg:w-8/12 w-full mx-auto bg-white p-5 my-5 h-full">
     @auth
+
+
     <form action="{{route('posts')}}" method="post">
         @csrf
 
@@ -26,25 +31,38 @@
         </div>
     </form>
 
+
+
     @endauth
 
-    <div class="mt-5">
-        @if($posts->count())
 
-        @foreach ($posts as $post)
+
+    <posts-list inline-template>
+
+        <div class="mt-5">
+            
+            {{-- @foreach ($posts as $post)
             @include('layout.partials.post')
-        @endforeach
-        <div class=" py-2 px-4 my-2">
-            {{$posts->links()}}
+            @endforeach
+            <div class=" py-2 px-4 my-2">
+                {{$posts->links()}}
+                
+                </div>
+                
+                @else
+             --}}
+            
+            <div  v-if="posts" >
+                <single-post v-for="post in posts" :key="post.index" :post="post"/>
+            </div>  
+            <p v-else class="text-xs text-gray-500">
+                        there is no posts yet !
+            </p>
+            
+            
         </div>
-        @else
+        
+    </posts-list>
 
-        <p class="text-xs text-gray-500">
-            there is no posts yet !
-        </p>
-        @endif
-
-
-    </div>
 </div>
 @endsection

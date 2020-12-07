@@ -12,6 +12,9 @@ export default {
             type : Number,
             default : 0 ,
         },
+        auth : {
+            default : 0
+        }
     },
     components : {
         PostsList
@@ -65,7 +68,7 @@ export default {
     },
     mounted () {
         this.getPosts()
-        console.log(this.isuser)
+        
     }
 }
 </script>

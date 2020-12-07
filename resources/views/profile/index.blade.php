@@ -41,8 +41,7 @@
             @{{user.likes}}
     </div>
 </div>
-    
-<posts-section @userupdate="getUser()" :user="{{$user->id}}" :isuser="{{Auth::user()->is($user) ?  'true' : 'false' }}" inline-template>
+<posts-section @userupdate="getUser()" auth="{{Auth::user()->id}}" :user="{{$user->id}}" :isuser="{{Auth::user()->is($user) ?  'true' : 'false' }}" inline-template>
 
         
         <div class="lg:w-8/12 w-full mx-auto bg-white p-5 my-5 h-full">
@@ -88,7 +87,7 @@
                         
                         @else
                         --}}
-            <posts-list @userupdate="userupdate()" @pagination="getPosts" :posts="posts" />
+            <posts-list :auth="auth" @userupdate="userupdate()" @pagination="getPosts" :posts="posts" />
                 
             
                 

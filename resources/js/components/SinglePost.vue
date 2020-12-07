@@ -8,7 +8,7 @@
             </a>
             <span class="text-xs text-gray-500"> {{ post.created_at | moment("from", "now")}}</span>
         </div>
-       
+        <delete-btn v-if="auth == post.user_id" @delete="deletePost" action="/posts/" :data="post.id"  />
     </div>
 
     <a :href="postLink">
@@ -38,11 +38,13 @@
 </template>
 
 <script>
+import DeleteBtn from './DeleteBtn.vue';
 import Like from './Like' 
 export default {
-    props : ['post'] ,
+    props : ['post','auth'] , 
     components : {
-        Like
+        Like,
+        DeleteBtn
     },
     computed : {
         postLink() {
@@ -52,6 +54,12 @@ export default {
     methods : {
         userupdate() {
             this.$emit('userupdate')
+        },
+        deletePost() {
+            this.userupdate()
+            console.log(this.post.user_id , this.auth)
+            this.$emit('postsupdate')
+
         }
     }
 

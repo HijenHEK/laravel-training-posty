@@ -112,6 +112,6 @@ class PostController extends Controller
         if( Str::contains(url()->previous(), "posts/") ){
             return redirect('posts');
         }
-        return back();
+        // return back();
     }
 }

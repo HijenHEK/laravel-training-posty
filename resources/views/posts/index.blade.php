@@ -2,12 +2,12 @@
 
 @section('content')
 
-
-<posts-section inline-template>
+<posts-section auth="{{Auth::user()->id}}" inline-template>
 
     
     <div class="lg:w-8/12 w-full mx-auto bg-white p-5 my-5 h-full">
         @auth
+        
         
 
             
@@ -49,7 +49,7 @@
                     
                     @else
                     --}}
-        <posts-list @pagination="getPosts" :posts="posts" />
+        <posts-list @pagination="getPosts" :auth="auth" :posts="posts" />
             
 
                 

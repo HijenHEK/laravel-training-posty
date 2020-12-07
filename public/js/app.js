@@ -2096,10 +2096,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/like/' + this.post).then(function (response) {
-        _this.likes = response.data[0].length; // if(response.data[1] === null) {
-        // }
-
-        _this.liked = response.data[1];
+        if (response.data[0]) {
+          _this.likes = response.data[0].length;
+          _this.liked = response.data[1];
+        } else {
+          _this.likes = 0;
+          _this.liked = false;
+        }
       });
     },
     react: function react() {

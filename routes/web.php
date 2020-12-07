@@ -32,6 +32,13 @@ use Illuminate\Support\Facades\Route;
     Route::get('/login', [LoginController::class , 'index'])->name('login');
     Route::post('/login', [LoginController::class , 'store'])->name('login');
 
+    
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', function(){
+        return view('dashboard');
+    })->name('Dashboard');
+
     Route::get('/users/{user:username}', [ProfileController::class , 'show'])->name('profile');
     Route::get('/users/{user}/data', [ProfileController::class , 'data']);
     
@@ -58,16 +65,9 @@ use Illuminate\Support\Facades\Route;
     Route::post('/comment/{post}', [CommentController::class , 'store'])->name('comments');
     Route::delete('/comment/{comment}', [CommentController::class , 'destroy'])->name('comments.delete');
 
-
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dashboard', function(){
-        return view('dashboard');
-    })->name('Dashboard');
-
+    Route::get('/posts/{post}/comments', [CommentController::class , 'index'])->name('post.comments');
+    Route::get('/feed', [PostController::class , 'feed'])->name('post.feed');
+    Route::get('/users/{user}/posts', [ProfileController::class , 'posts']);
     
 });
 
-
-Route::get('/posts/{post}/comments', [CommentController::class , 'index'])->name('post.comments');
-Route::get('/feed', [PostController::class , 'feed'])->name('post.feed');
-Route::get('/users/{user}/posts', [ProfileController::class , 'posts']);

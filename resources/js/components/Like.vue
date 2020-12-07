@@ -37,11 +37,14 @@ export default {
         getLikes(){
             axios.get('/like/'+this.post)
                 .then((response) => {
-                    this.likes = response.data[0].length
-                    // if(response.data[1] === null) {
+                    if(response.data[0]) {
+                        this.likes = response.data[0].length
+                        this.liked = response.data[1]
 
-                    // }
-                    this.liked = response.data[1]
+                    }else {
+                        this.likes = 0
+                        this.liked = false 
+                    }
                 })
         },
         react() {

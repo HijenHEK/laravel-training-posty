@@ -34,9 +34,12 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/users/{user:username}', [ProfileController::class , 'show'])->name('profile');
     Route::get('/users/{user}/data', [ProfileController::class , 'data']);
+    
+    
+    
+    Route::delete('/follow/{user:username}', [FollowController::class , 'destroy']);
 
-    Route::post('/follow/{user:username}', [FollowController::class , 'store'])->name('follow');
-    Route::delete('/follow/{user:username}', [FollowController::class , 'destroy'])->name('follow');
+    Route::post('/follow/{user:username}', [FollowController::class , 'store']);
 
     Route::post('/logout', [LogoutController::class , 'store'])->name('logout');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -22,6 +23,7 @@ class ProfileController extends Controller
             "name" => $user->name , 
             "username" => $user->username , 
             "followers" => $user->followers->count() , 
+            "following" => $user->followers->contains(Auth::user()),
             "posts" => $user->posts->count() , 
             "likes" => $user->recievedLikes->count() , 
         ];

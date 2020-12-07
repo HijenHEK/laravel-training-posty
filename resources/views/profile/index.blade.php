@@ -4,7 +4,7 @@
 
 
 
-<user-profile :userid="{{$user->id}}" inline-template>
+<user-profile :userid="{{$user->id}}"  inline-template>
 
     <div>
 
@@ -15,27 +15,16 @@
                 <h1 class="font-bold">
                     {{$user->name}}
                 </h1>
+            @if ( Auth::user() && !Auth::user()->is($user))
+                <follow-btn @userupdate="getUser()" :unfollow="user.following" user="{{ $user->username }}" />
+            @endif
+        
                 
-                @can('follow' , $user)
-        <form action="{{route('follow' , $user)}}" method="POST">
-            @csrf
-            <button type="submit" class="px-3 py-1 bg-blue-300 text-white hover:bg-blue-500 rounded-lg "> Follow
-            </button>
-        </form>
-        @elsecan('unfollow' , $user)
-
-        <form action="{{route('follow' , $user)}}" method="POST">
-            @method('DELETE')
-            @csrf
-            <button type="submit" class="px-3 py-1 bg-gray-300 text-white hover:bg-red-500 rounded-lg "> unFollow
-            </button>
-        </form>
-        @endcan
+                    
 
 
 
-
-    </div>
+        </div>
 
     <div>
         <span class="text-sm text-blue-500">

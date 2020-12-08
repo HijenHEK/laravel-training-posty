@@ -13,7 +13,7 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
     public function likes(){
-        return $this->hasMany(Like::class);
+        return $this->morphMany(Like::class , 'likeable');
     }
     public function Comments(){
         return $this->hasMany(Comment::class);

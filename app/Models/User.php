@@ -54,10 +54,11 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
     public function like(Post $p) {
-        return $this->likes->contains('post_id' , $p->id);
+        return $this->likes()->where('likeable_id' , $p->id)->where('likeable_type' , 'App\Models\Post')->exists();
     }
     public function recievedLikes(){
-        return $this->hasManyThrough(Like::class , Post::class);
+        // return $this->posts->map->likes()->count();
+        return $this->posts->map->likes->collapse()->count();
     }
     public function feed(){
         $following = $this->following()->pluck('following_id') ;

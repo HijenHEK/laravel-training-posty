@@ -25,7 +25,7 @@ class ProfileController extends Controller
             "followers" => $user->followers->count() , 
             "following" => $user->followers->contains(Auth::user()),
             "posts" => $user->posts->count() , 
-            "likes" => $user->recievedLikes->count() , 
+            "likes" => $user->recievedLikes(), 
         ];
 
         

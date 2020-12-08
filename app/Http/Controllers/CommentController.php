@@ -14,28 +14,41 @@ class CommentController extends Controller
     {
         return $this->middleware('auth');
     }
-
-   public function index(Post $post) {
-       return $post->comments()->with('user','likes')->latest()->get();
-   }
+    public function model($model) {
+        return "App\\Models\\$model";
+    }
+    public function index($model,$el ) {
+        
+        $el = $this->model($model)::find($el);
+        return $el->comments()->with('user','likes')->latest()->get();
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , Post $post)
+    public function store(Request $request ,$model, $el )
     {
         
+
+        $el = $this->model($model)::find($el);
+
         $request->validate([
             'content' => 'required'
         ]);
-
-        $comment = new Comment();
-        $comment->content = $request->content ;
-        $comment->user_id = $request->user()->id ;
-        $comment->post_id = $post->id;
-        $comment->save() ;
+        
+        $el->comments()->create([
+            'user_id' => $request->user()->id ,
+            'content' => $request->content ,
+            
+        ]);
+        // $comment = new Comment();
+        // $comment->content = $request->content ;
+        // $comment->user_id = $request->user()->id ;
+        // $comment->commentable_id = $el->id;
+        // $comment->commentable_type= model;
+        // $comment->save() ;
         
         
         // return back();
@@ -64,6 +77,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
+
         // $this->authorize('delete-comment' , $comment);
         
         $comment->delete();

@@ -29,8 +29,8 @@ export default {
         
     },
     getComments() {
-        axios.get('/posts/'+this.post+'/comments')
-            .then(response => this.comments =response.data)
+        axios.get('/comment/Post/'+this.post)
+            .then(response => this.comments = response.data)
     },
     deleteComment(comment){
             axios.delete('/comment/Post/'+ comment.id)   

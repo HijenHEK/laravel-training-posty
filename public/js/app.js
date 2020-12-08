@@ -1975,7 +1975,7 @@ __webpack_require__.r(__webpack_exports__);
     getComments: function getComments() {
       var _this2 = this;
 
-      axios.get('/posts/' + this.post + '/comments').then(function (response) {
+      axios.get('/comment/Post/' + this.post).then(function (response) {
         return _this2.comments = response.data;
       });
     },
@@ -2441,6 +2441,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Like_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Like.vue */ "./resources/js/components/Like.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //

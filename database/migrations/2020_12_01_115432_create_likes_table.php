@@ -23,7 +23,7 @@ class CreateLikesTable extends Migration
         // });
         Schema::create('likes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->String('likeable_id');
             $table->String('likeable_type');
             $table->unique(['likeable_id', 'likeable_type', 'user_id'], 'likes_unique');

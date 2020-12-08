@@ -70,7 +70,7 @@ class PostController extends Controller
         // return ["post" => $post , "comments" => Comment::where('post_id',$post->id)->latest()->with('user')->get() ] ;
         return view('posts.show' , [
             'post' => $post,
-            'comments' => Comment::where('post_id',$post->id)->latest()->with('user','likes')->get()
+            'comments' => Comment::where('commentable_id',$post->id)->where('commentable_type','App\Models\Post')->latest()->with('user','likes')->get()
         ]);
     }
 

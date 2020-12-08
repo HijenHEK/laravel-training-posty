@@ -9,7 +9,9 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['content'];
+    protected $fillable = ['content','user_id'];
+    public $timestamps = true;
+
 
     public function post(){
         return $this->belongsTo(Post::class);
@@ -21,7 +23,13 @@ class Comment extends Model
     public function likes(){
         return $this->morphMany(Like::class , 'likeable');
     }
-    
+
+    public function commentable() {
+        return $this->morphTo();
+    }
+    public function comments(){
+        return $this->morphMany(Comment::class , 'commentable');
+    }
     // public function comment(){
     //     return $this->belogsTo(Comment::class) ;
     // }

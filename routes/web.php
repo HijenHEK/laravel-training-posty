@@ -62,10 +62,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/like/{model}/{el}', [LikeController::class , 'store'])->name('like');
     Route::delete('/like/{model}/{el}', [LikeController::class , 'destroy'])->name('like');
 
-    Route::post('/comment/{post}', [CommentController::class , 'store'])->name('comments');
-    Route::delete('/comment/{comment}', [CommentController::class , 'destroy'])->name('comments.delete');
+    Route::post('/comment/{model}/{post}', [CommentController::class , 'store'])->name('comments');
+    Route::delete('/comment/{model}/{comment}', [CommentController::class , 'destroy'])->name('comments.delete');
 
-    Route::get('/posts/{post}/comments', [CommentController::class , 'index'])->name('post.comments');
+    Route::get('/comment/{model}/{post}', [CommentController::class , 'index'])->name('post.comments');
     Route::get('/feed', [PostController::class , 'feed'])->name('post.feed');
     Route::get('/users/{user}/posts', [ProfileController::class , 'posts']);
     

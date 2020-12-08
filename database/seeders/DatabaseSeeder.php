@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
             "email" => "admin@posty.com",
             "password" => Hash::make("password")
         ]);
-        User::factory(10)->create();
-        Post::factory(30)->create();
-        Comment::factory(50)->create();
+        User::factory(100)->create();
+        Post::factory(1000)->create();
+        Comment::factory(200)->create();
     }
 }

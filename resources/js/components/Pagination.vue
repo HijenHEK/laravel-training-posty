@@ -114,7 +114,6 @@ export default {
         changePage(page) {
                 this.$emit('pagination' , page)
 
-            
         }
         
     },

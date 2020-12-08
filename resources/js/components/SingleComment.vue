@@ -18,7 +18,16 @@
                             {{comment.content}}
 
                         </p>
-                        <like model="Comment" :el="comment.id" />
+                            <like model="Comment" :el="comment.id" />
+                       <!-- <div class="flex">
+                            <div>
+
+                                <span class=" mx-3 px-3 font-bold text-xs">
+                                    {{comment.comments.length}} Comments
+                                </span>
+
+                            </div>
+                        </div> -->
                         
     </div>
 </template>

@@ -18,11 +18,17 @@
                             {{comment.content}}
 
                         </p>
+                        <like model="Comment" :el="comment.id" />
+                        
     </div>
 </template>
 
 <script>
+import Like from './Like.vue'
 export default {
+    components: {
+        Like ,
+    },
     props: ['comment','canDelete'],
     methods : {
         deleteComment() {
@@ -30,6 +36,7 @@ export default {
         }
     },
     mounted() {
+        console.log(this.comment)
     }
 }
 </script>

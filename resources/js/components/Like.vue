@@ -10,7 +10,7 @@
                 </button>
 
             <span
-                class=" font-bold text-xs @auth  @if (Auth::user()->like($post)) text-blue-700 @endif @endauth">
+                class=" font-bold text-xs @auth  @if (Auth::user()->like($el)) text-blue-700 @endif @endauth">
                 
                    {{likes}} likes
             </span>
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-    props : ['post'],
+    props : ['model','el'],
     computed : {
         value() {
             return this.liked ? 'unlike' : 'like'
@@ -35,7 +35,7 @@ export default {
     },
     methods : {
         getLikes(){
-            axios.get('/like/'+this.post)
+            axios.get('/like/'+this.model+'/'+this.el)
                 .then((response) => {
                     if(response.data[0]) {
                         this.likes = response.data[0].length
@@ -56,7 +56,7 @@ export default {
             this.$emit('react')
         },
         like(){
-            axios.post('/like/'+this.post)
+            axios.post('/like/'+this.model+'/'+this.el)
                 .then(()=>{
                     this.likes+=1
                     this.liked = true
@@ -64,7 +64,7 @@ export default {
         },
         unlike(){
 
-            axios.delete('/like/'+this.post)
+            axios.delete('/like/'+this.model+'/'+this.el)
                 .then(()=>{
                     this.likes-=1
                     this.liked = false

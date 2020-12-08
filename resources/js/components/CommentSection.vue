@@ -21,7 +21,7 @@ export default {
 
   methods: {
     addComment () {
-      this.form.post('/comment/'+this.post)
+      this.form.post('/comment/Post/'+this.post)
         .then((response) =>{
             this.form.content = ''
                 this.getComments()
@@ -33,7 +33,7 @@ export default {
             .then(response => this.comments =response.data)
     },
     deleteComment(comment){
-            axios.delete('/comment/'+ comment.id)   
+            axios.delete('/comment/Post/'+ comment.id)   
             .then(()=>{
                 this.getComments()
             }); 

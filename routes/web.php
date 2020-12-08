@@ -57,10 +57,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/posts/{post}', [PostController::class , 'destroy'])->name('posts.delete');
     
     
-    Route::get('/like/{post}', [LikeController::class , 'index']);
+    Route::get('/like/{model}/{el}', [LikeController::class , 'index']);
 
-    Route::post('/like/{post}', [LikeController::class , 'store'])->name('like');
-    Route::delete('/like/{post}', [LikeController::class , 'destroy'])->name('like');
+    Route::post('/like/{model}/{el}', [LikeController::class , 'store'])->name('like');
+    Route::delete('/like/{model}/{el}', [LikeController::class , 'destroy'])->name('like');
 
     Route::post('/comment/{post}', [CommentController::class , 'store'])->name('comments');
     Route::delete('/comment/{comment}', [CommentController::class , 'destroy'])->name('comments.delete');

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Mail\PostLiked;
-use App\Models\Like;
+
 use App\Models\Post;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -18,24 +19,32 @@ class LikeController extends Controller
     {
         return $this->middleware('auth');
     }
-
-
-    public function index(Post $post) {
-        return [$post->likes()->get(),Auth::user() ? Auth::user()->like($post) : null] ;
+    public function model($model) {
+        if(!in_array($model , ['Post' , 'Comment'])) {
+            return null;
+        }
+        return "App\\Models\\$model";
     }
-    public function store(Post $post){
-        
 
-        if(Request()->user()->like($post)){
+    public function index($model ,$el) {
+        
+        $el = $this->model($model)::find($el);
+        return [$el->likes()->get() , Auth::user() ? Auth::user()->like($el) : null] ;
+    }
+    public function store($model ,$el){
+        
+        $el = $this->model($model)::find($el);
+
+        if(Request()->user()->like($el)){
             return response(null , 409);
         }
 
-        $post->likes()->create([
+        $el->likes()->create([
             "user_id" => Auth::id()
         ]);
 
-        // if(! $post->likes()->onlyTrashed()->where('user_id' , auth()->id())->count()) {
-        //     Mail::to($post->user)->send(new PostLiked(Auth::user() , $post));
+        // if(! $el->likes()->onlyTrashed()->where('user_id' , auth()->id())->count()) {
+        //     Mail::to($el->user)->send(new PostLiked(Auth::user() , $el));
 
         // } ;
 
@@ -43,11 +52,13 @@ class LikeController extends Controller
 
     }
 
-    public function destroy(Post $post){
-        if(!Request()->user()->like($post)){
+    public function destroy($model ,$el){
+        $el = $this->model($model)::find($el);
+
+        if(!Request()->user()->like($el)){
             return response(null , 409);
         }
-        $post->likes->where("user_id" , Auth::id())->first()->delete();
+        $el->likes->where("user_id" , Auth::id())->first()->delete();
         // return back();
     }
 }

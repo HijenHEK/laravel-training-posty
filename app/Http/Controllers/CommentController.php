@@ -16,7 +16,7 @@ class CommentController extends Controller
     }
 
    public function index(Post $post) {
-       return $post->comments()->with('user')->latest()->get();
+       return $post->comments()->with('user','likes')->latest()->get();
    }
     /**
      * Store a newly created resource in storage.

@@ -53,8 +53,8 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany(Comment::class);
     }
-    public function like(Post $p) {
-        return $this->likes()->where('likeable_id' , $p->id)->where('likeable_type' , 'App\Models\Post')->exists();
+    public function like($e) {
+        return $this->likes()->where('likeable_id' , $e->id)->where('likeable_type' , get_class($e))->exists();
     }
     public function recievedLikes(){
         // return $this->posts->map->likes()->count();

@@ -20,7 +20,7 @@
     </a>
     <div class="flex px-2">
         <div class="flex">
-        <like @react="userupdate" :post="post.id" />
+        <like @react="userupdate" model="Post" :el="post.id" />
             
             <a  :href="postLink">
 

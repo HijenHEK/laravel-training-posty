@@ -1966,7 +1966,7 @@ __webpack_require__.r(__webpack_exports__);
     addComment: function addComment() {
       var _this = this;
 
-      this.form.post('/comment/' + this.post).then(function (response) {
+      this.form.post('/comment/Post/' + this.post).then(function (response) {
         _this.form.content = '';
 
         _this.getComments();
@@ -1982,7 +1982,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteComment: function deleteComment(comment) {
       var _this3 = this;
 
-      axios["delete"]('/comment/' + comment.id).then(function () {
+      axios["delete"]('/comment/Post/' + comment.id).then(function () {
         _this3.getComments();
       });
     }
@@ -2105,7 +2105,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['post'],
+  props: ['model', 'el'],
   computed: {
     value: function value() {
       return this.liked ? 'unlike' : 'like';
@@ -2121,7 +2121,7 @@ __webpack_require__.r(__webpack_exports__);
     getLikes: function getLikes() {
       var _this = this;
 
-      axios.get('/like/' + this.post).then(function (response) {
+      axios.get('/like/' + this.model + '/' + this.el).then(function (response) {
         if (response.data[0]) {
           _this.likes = response.data[0].length;
           _this.liked = response.data[1];
@@ -2143,7 +2143,7 @@ __webpack_require__.r(__webpack_exports__);
     like: function like() {
       var _this2 = this;
 
-      axios.post('/like/' + this.post).then(function () {
+      axios.post('/like/' + this.model + '/' + this.el).then(function () {
         _this2.likes += 1;
         _this2.liked = true;
       });
@@ -2151,7 +2151,7 @@ __webpack_require__.r(__webpack_exports__);
     unlike: function unlike() {
       var _this3 = this;
 
-      axios["delete"]('/like/' + this.post).then(function () {
+      axios["delete"]('/like/' + this.model + '/' + this.el).then(function () {
         _this3.likes -= 1;
         _this3.liked = false;
       });
@@ -2440,6 +2440,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Like_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Like.vue */ "./resources/js/components/Like.vue");
 //
 //
 //
@@ -2463,14 +2464,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Like: _Like_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: ['comment', 'canDelete'],
   methods: {
     deleteComment: function deleteComment() {
       this.$emit('delete-comment');
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    console.log(this.comment);
+  }
 });
 
 /***/ }),
@@ -34909,7 +34918,7 @@ var render = function() {
       "span",
       {
         staticClass:
-          " font-bold text-xs @auth  @if (Auth::user()->like($post)) text-blue-700 @endif @endauth"
+          " font-bold text-xs @auth  @if (Auth::user()->like($el)) text-blue-700 @endif @endauth"
       },
       [_vm._v("\n        \n           " + _vm._s(_vm.likes) + " likes\n    ")]
     )
@@ -35475,8 +35484,11 @@ var render = function() {
             _vm._s(_vm.comment.content) +
             "\n\n                     "
         )
-      ])
-    ]
+      ]),
+      _vm._v(" "),
+      _c("like", { attrs: { model: "Comment", el: _vm.comment.id } })
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -35548,7 +35560,7 @@ var render = function() {
           { staticClass: "flex" },
           [
             _c("like", {
-              attrs: { post: _vm.post.id },
+              attrs: { model: "Post", el: _vm.post.id },
               on: { react: _vm.userupdate }
             }),
             _vm._v(" "),

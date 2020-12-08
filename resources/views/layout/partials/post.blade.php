@@ -28,9 +28,9 @@
     </a>
     <div class="flex px-2">
         <div>
-        <like :post="{{$post->id}}" 
+        {{-- <like :post="{{$post->id}}" 
             :LikesCount="{{$post->likes->count()}}" 
-             />
+             /> --}}
             {{-- @auth
 
             <form action="{{route('like',$post->id)}}" method="post" class="inline">

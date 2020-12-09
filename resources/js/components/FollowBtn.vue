@@ -31,14 +31,14 @@ export default {
         doAction() {
             if(this.unfollow) {
                 axios.delete('/follow/'+this.user)
-                    .then(()=>{
-                        this.$emit('userupdate')
-                    })
+                    // .then(()=>{
+                    //     this.$emit('userupdate')
+                    // })
             }else {
                 axios.post('/follow/'+this.user)
-                    .then(()=>{
-                        this.$emit('userupdate')
-                    })
+                    // .then(()=>{
+                    //     this.$emit('userupdate')
+                    // })
             }
                 
         }

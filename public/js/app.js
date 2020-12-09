@@ -1988,6 +1988,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    var _this4 = this;
+
+    Echo.channel('update').listen('Update', function (e) {
+      // this.posts = e.posts
+      // // console.log('hello ' , e.posts)
+      _this4.getComments();
+    });
     this.getComments();
   }
 });
@@ -2057,16 +2064,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     doAction: function doAction() {
-      var _this = this;
-
       if (this.unfollow) {
-        axios["delete"]('/follow/' + this.user).then(function () {
-          _this.$emit('userupdate');
-        });
+        axios["delete"]('/follow/' + this.user); // .then(()=>{
+        //     this.$emit('userupdate')
+        // })
       } else {
-        axios.post('/follow/' + this.user).then(function () {
-          _this.$emit('userupdate');
-        });
+        axios.post('/follow/' + this.user); // .then(()=>{
+        //     this.$emit('userupdate')
+        // })
       }
     }
   }
@@ -2158,6 +2163,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    var _this4 = this;
+
+    Echo.channel('update').listen('Update', function (e) {
+      // this.posts = e.posts
+      // // console.log('hello ' , e.posts)
+      _this4.getLikes();
+    });
     this.getLikes();
   }
 });
@@ -2427,11 +2439,13 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this3 = this;
 
-    // this.getPosts()
     // console.log(Echo)
-    Echo.channel('feed').listen('PostAdded', function (e) {
-      _this3.posts = e.posts; // console.log('hello ' , e.posts)
+    Echo.channel('update').listen('Update', function (e) {
+      // this.posts = e.posts
+      // // console.log('hello ' , e.posts)
+      _this3.getPosts();
     });
+    this.getPosts();
   }
 });
 
@@ -2611,6 +2625,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    var _this2 = this;
+
+    Echo.channel('update').listen('Update', function (e) {
+      // this.posts = e.posts
+      // // console.log('hello ' , e.posts)
+      _this2.getUser();
+
+      console.log('user-update');
+    });
     this.getUser();
   }
 });

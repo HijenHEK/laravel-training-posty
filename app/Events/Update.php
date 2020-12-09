@@ -9,9 +9,8 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Auth;
 
-class PostAdded implements ShouldBroadcast
+class Update implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -20,13 +19,9 @@ class PostAdded implements ShouldBroadcast
      *
      * @return void
      */
-
-    // public $posts ;
-
     public function __construct()
     {
-        
-        // $this->posts = Auth::user()->feed() ;
+        //
     }
 
     /**
@@ -36,6 +31,6 @@ class PostAdded implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('update');
+        return new channel('update');
     }
 }

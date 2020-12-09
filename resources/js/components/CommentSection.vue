@@ -40,6 +40,13 @@ export default {
         }
   },
   mounted() {
+    Echo.channel('update')
+            .listen ('Update' , e => {
+              // this.posts = e.posts
+                // // console.log('hello ' , e.posts)
+                this.getComments()
+
+            });
       this.getComments()
   }
 

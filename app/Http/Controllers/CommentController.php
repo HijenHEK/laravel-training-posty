@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Update;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -43,6 +44,8 @@ class CommentController extends Controller
             'content' => $request->content ,
             
         ]);
+        event( new Update());
+
         // $comment = new Comment();
         // $comment->content = $request->content ;
         // $comment->user_id = $request->user()->id ;
@@ -83,5 +86,7 @@ class CommentController extends Controller
         $comment->delete();
 
         // return back();
+        event( new Update());
+
     }
 }

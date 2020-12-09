@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Update;
 use App\Mail\PostLiked;
 
 use App\Models\Post;
@@ -42,7 +43,7 @@ class LikeController extends Controller
         $el->likes()->create([
             "user_id" => Auth::id()
         ]);
-
+        event(new Update());
         // if(! $el->likes()->onlyTrashed()->where('user_id' , auth()->id())->count()) {
         //     Mail::to($el->user)->send(new PostLiked(Auth::user() , $el));
 
@@ -60,5 +61,8 @@ class LikeController extends Controller
         }
         $el->likes->where("user_id" , Auth::id())->first()->delete();
         // return back();
+
+        event(new Update());
+
     }
 }

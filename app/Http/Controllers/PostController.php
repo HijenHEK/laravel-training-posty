@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\PostAdded;
+use App\Events\PostDeleted;
+use App\Events\Update;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -57,7 +59,7 @@ class PostController extends Controller
             "body" => $request->body,
         ]);
         
-        event(new PostAdded());
+        event(new Update());
         // return back();
     }
 
@@ -110,10 +112,11 @@ class PostController extends Controller
        
         $this->authorize('delete-post', $post);
         $post->delete();
-        
-        if( Str::contains(url()->previous(), "posts/") ){
-            return redirect('posts');
-        }
+        event(new Update());
+    
+        // if( Str::contains(url()->previous(), "posts/") ){
+        //     return redirect('posts');
+        // }
         // return back();
     }
 }

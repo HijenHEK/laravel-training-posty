@@ -21,7 +21,15 @@ export default {
         }
     },
     mounted() {
-        this.getUser()   
+        Echo.channel('update')
+            .listen ('Update' , e => {
+                // this.posts = e.posts
+                // // console.log('hello ' , e.posts)
+                this.getUser()
+                console.log('user-update')
+
+            });  
+        this.getUser() 
     }
 }
 </script>

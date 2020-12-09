@@ -67,8 +67,13 @@ export default {
         }
     },
     mounted () {
-        this.getPosts()
-        
+        // this.getPosts()
+        // console.log(Echo)
+        Echo.channel('feed')
+            .listen ('PostAdded' , e => {
+                this.posts = e.posts
+                // console.log('hello ' , e.posts)
+            });
     }
 }
 </script>
